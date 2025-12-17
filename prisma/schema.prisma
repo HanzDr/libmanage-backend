@@ -1,0 +1,129 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum CopyStatus {
+  AVAILABLE
+  LOANED
+  LOST
+  DAMAGED
+  IN_REPAIR
+}
+
+model Book {
+  id          String       @id @default(cuid())
+  bookTitle   String
+  publishedAt DateTime?
+  genre       String
+  edition     String?
+  language    String
+  isbn        String?      @unique
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  deletedAt   DateTime?
+  copies      BookCopy[]
+  bookAuthors BookAuthor[]
+
+  @@index([genre])
+  @@index([language])
+}
+
+model BookCopy {
+  id           String        @id @default(cuid())
+  bookId       String?
+  status       CopyStatus    @default(AVAILABLE)
+  deletedAt    DateTime?
+  book         Book?         @relation(fields: [bookId], references: [id])
+  bookReserves BookReserve[]
+  bookLoans    BookLoan[]
+
+  @@index([bookId])
+}
+
+model Author {
+  id        String    @id @default(cuid())
+  firstName String
+  lastName  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  books BookAuthor[]
+}
+
+model BookAuthor {
+  bookId   String
+  authorId String
+
+  book   Book   @relation(fields: [bookId], references: [id])
+  author Author @relation(fields: [authorId], references: [id])
+
+  @@id([bookId, authorId])
+  @@index([authorId])
+}
+
+model BookLoan {
+  id                   String   @id @default(cuid())
+  customerId           String
+  bookCopyId           String
+  dateBorrowed         DateTime
+  dateReturned         DateTime
+  expectedDateReturned DateTime
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  bookCopy  BookCopy    @relation(fields: [bookCopyId], references: [id])
+  customer  Customer    @relation(fields: [customerId], references: [id])
+  scoreLogs ScoreLogs[]
+}
+
+model BookReserve {
+  id                   String   @id @default(cuid())
+  customerId           String
+  bookCopyId           String
+  expectedDateBorrowed DateTime
+  expectedDateReturned DateTime
+  status               String
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  bookCopy BookCopy @relation(fields: [bookCopyId], references: [id])
+  customer Customer @relation(fields: [customerId], references: [id])
+}
+
+model Customer {
+  id               String        @id @default(cuid())
+  firstName        String
+  lastName         String
+  age              String
+  booksloanedCount Int
+  borrowerScore    Int           @default(0)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  deletedAt        DateTime?
+  bookLoan         BookLoan[]
+  bookReserves     BookReserve[]
+  scoreLogs        ScoreLogs[]
+}
+
+model ScoreLogs {
+  id         String @id @default(cuid())
+  loanId     String
+  customerId String
+  value      Int
+  reason     String
+
+  createdAt DateTime @default(now())
+
+  customer Customer  @relation(fields: [customerId], references: [id])
+  loan     BookLoan? @relation(fields: [loanId], references: [id])
+
+  @@index([loanId])
+  @@index([customerId])
+}
