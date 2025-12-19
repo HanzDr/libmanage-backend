@@ -8,6 +8,10 @@ import {
 export class UpdateBookDto {
   @IsString()
   @IsNotEmpty()
+  id: string;
+
+  @IsString()
+  @IsNotEmpty()
   bookTitle?: string;
 
   @IsDateString()
@@ -32,5 +36,3 @@ export class UpdateBookDto {
   @IsNotEmpty()
   isbn?: string;
 }
-
-

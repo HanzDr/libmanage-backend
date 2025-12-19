@@ -8,14 +8,6 @@ datasource db {
   provider = "postgresql"
 }
 
-enum CopyStatus {
-  AVAILABLE
-  LOANED
-  LOST
-  DAMAGED
-  IN_REPAIR
-}
-
 model Book {
   id          String       @id @default(cuid())
   bookTitle   String
@@ -32,6 +24,14 @@ model Book {
 
   @@index([genre])
   @@index([language])
+}
+
+enum CopyStatus {
+  AVAILABLE
+  LOANED
+  LOST
+  DAMAGED
+  IN_REPAIR
 }
 
 model BookCopy {
@@ -69,14 +69,15 @@ model BookAuthor {
 }
 
 model BookLoan {
-  id                   String   @id @default(cuid())
+  id                   String     @id @default(cuid())
   customerId           String
   bookCopyId           String
   dateBorrowed         DateTime
-  dateReturned         DateTime
+  dateReturned         DateTime?
+  status               CopyStatus
   expectedDateReturned DateTime
-  createdAt            DateTime @default(now())
-  updatedAt            DateTime @updatedAt
+  createdAt            DateTime   @default(now())
+  updatedAt            DateTime   @updatedAt
 
   bookCopy  BookCopy    @relation(fields: [bookCopyId], references: [id])
   customer  Customer    @relation(fields: [customerId], references: [id])
@@ -89,7 +90,7 @@ model BookReserve {
   bookCopyId           String
   expectedDateBorrowed DateTime
   expectedDateReturned DateTime
-  status               String
+  status               String //E.g: Cancelled
   createdAt            DateTime @default(now())
   updatedAt            DateTime @updatedAt
 

@@ -30,6 +30,7 @@ export type BookLoanMinAggregateOutputType = {
   bookCopyId: string | null
   dateBorrowed: Date | null
   dateReturned: Date | null
+  status: $Enums.CopyStatus | null
   expectedDateReturned: Date | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -41,6 +42,7 @@ export type BookLoanMaxAggregateOutputType = {
   bookCopyId: string | null
   dateBorrowed: Date | null
   dateReturned: Date | null
+  status: $Enums.CopyStatus | null
   expectedDateReturned: Date | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -52,6 +54,7 @@ export type BookLoanCountAggregateOutputType = {
   bookCopyId: number
   dateBorrowed: number
   dateReturned: number
+  status: number
   expectedDateReturned: number
   createdAt: number
   updatedAt: number
@@ -65,6 +68,7 @@ export type BookLoanMinAggregateInputType = {
   bookCopyId?: true
   dateBorrowed?: true
   dateReturned?: true
+  status?: true
   expectedDateReturned?: true
   createdAt?: true
   updatedAt?: true
@@ -76,6 +80,7 @@ export type BookLoanMaxAggregateInputType = {
   bookCopyId?: true
   dateBorrowed?: true
   dateReturned?: true
+  status?: true
   expectedDateReturned?: true
   createdAt?: true
   updatedAt?: true
@@ -87,6 +92,7 @@ export type BookLoanCountAggregateInputType = {
   bookCopyId?: true
   dateBorrowed?: true
   dateReturned?: true
+  status?: true
   expectedDateReturned?: true
   createdAt?: true
   updatedAt?: true
@@ -170,7 +176,8 @@ export type BookLoanGroupByOutputType = {
   customerId: string
   bookCopyId: string
   dateBorrowed: Date
-  dateReturned: Date
+  dateReturned: Date | null
+  status: $Enums.CopyStatus
   expectedDateReturned: Date
   createdAt: Date
   updatedAt: Date
@@ -202,7 +209,8 @@ export type BookLoanWhereInput = {
   customerId?: Prisma.StringFilter<"BookLoan"> | string
   bookCopyId?: Prisma.StringFilter<"BookLoan"> | string
   dateBorrowed?: Prisma.DateTimeFilter<"BookLoan"> | Date | string
-  dateReturned?: Prisma.DateTimeFilter<"BookLoan"> | Date | string
+  dateReturned?: Prisma.DateTimeNullableFilter<"BookLoan"> | Date | string | null
+  status?: Prisma.EnumCopyStatusFilter<"BookLoan"> | $Enums.CopyStatus
   expectedDateReturned?: Prisma.DateTimeFilter<"BookLoan"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"BookLoan"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"BookLoan"> | Date | string
@@ -216,7 +224,8 @@ export type BookLoanOrderByWithRelationInput = {
   customerId?: Prisma.SortOrder
   bookCopyId?: Prisma.SortOrder
   dateBorrowed?: Prisma.SortOrder
-  dateReturned?: Prisma.SortOrder
+  dateReturned?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
   expectedDateReturned?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -233,7 +242,8 @@ export type BookLoanWhereUniqueInput = Prisma.AtLeast<{
   customerId?: Prisma.StringFilter<"BookLoan"> | string
   bookCopyId?: Prisma.StringFilter<"BookLoan"> | string
   dateBorrowed?: Prisma.DateTimeFilter<"BookLoan"> | Date | string
-  dateReturned?: Prisma.DateTimeFilter<"BookLoan"> | Date | string
+  dateReturned?: Prisma.DateTimeNullableFilter<"BookLoan"> | Date | string | null
+  status?: Prisma.EnumCopyStatusFilter<"BookLoan"> | $Enums.CopyStatus
   expectedDateReturned?: Prisma.DateTimeFilter<"BookLoan"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"BookLoan"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"BookLoan"> | Date | string
@@ -247,7 +257,8 @@ export type BookLoanOrderByWithAggregationInput = {
   customerId?: Prisma.SortOrder
   bookCopyId?: Prisma.SortOrder
   dateBorrowed?: Prisma.SortOrder
-  dateReturned?: Prisma.SortOrder
+  dateReturned?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
   expectedDateReturned?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -264,7 +275,8 @@ export type BookLoanScalarWhereWithAggregatesInput = {
   customerId?: Prisma.StringWithAggregatesFilter<"BookLoan"> | string
   bookCopyId?: Prisma.StringWithAggregatesFilter<"BookLoan"> | string
   dateBorrowed?: Prisma.DateTimeWithAggregatesFilter<"BookLoan"> | Date | string
-  dateReturned?: Prisma.DateTimeWithAggregatesFilter<"BookLoan"> | Date | string
+  dateReturned?: Prisma.DateTimeNullableWithAggregatesFilter<"BookLoan"> | Date | string | null
+  status?: Prisma.EnumCopyStatusWithAggregatesFilter<"BookLoan"> | $Enums.CopyStatus
   expectedDateReturned?: Prisma.DateTimeWithAggregatesFilter<"BookLoan"> | Date | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"BookLoan"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"BookLoan"> | Date | string
@@ -273,7 +285,8 @@ export type BookLoanScalarWhereWithAggregatesInput = {
 export type BookLoanCreateInput = {
   id?: string
   dateBorrowed: Date | string
-  dateReturned: Date | string
+  dateReturned?: Date | string | null
+  status: $Enums.CopyStatus
   expectedDateReturned: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -287,7 +300,8 @@ export type BookLoanUncheckedCreateInput = {
   customerId: string
   bookCopyId: string
   dateBorrowed: Date | string
-  dateReturned: Date | string
+  dateReturned?: Date | string | null
+  status: $Enums.CopyStatus
   expectedDateReturned: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -297,7 +311,8 @@ export type BookLoanUncheckedCreateInput = {
 export type BookLoanUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dateBorrowed?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dateReturned?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumCopyStatusFieldUpdateOperationsInput | $Enums.CopyStatus
   expectedDateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -311,7 +326,8 @@ export type BookLoanUncheckedUpdateInput = {
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   bookCopyId?: Prisma.StringFieldUpdateOperationsInput | string
   dateBorrowed?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dateReturned?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumCopyStatusFieldUpdateOperationsInput | $Enums.CopyStatus
   expectedDateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -323,7 +339,8 @@ export type BookLoanCreateManyInput = {
   customerId: string
   bookCopyId: string
   dateBorrowed: Date | string
-  dateReturned: Date | string
+  dateReturned?: Date | string | null
+  status: $Enums.CopyStatus
   expectedDateReturned: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -332,7 +349,8 @@ export type BookLoanCreateManyInput = {
 export type BookLoanUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dateBorrowed?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dateReturned?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumCopyStatusFieldUpdateOperationsInput | $Enums.CopyStatus
   expectedDateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -343,7 +361,8 @@ export type BookLoanUncheckedUpdateManyInput = {
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   bookCopyId?: Prisma.StringFieldUpdateOperationsInput | string
   dateBorrowed?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dateReturned?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumCopyStatusFieldUpdateOperationsInput | $Enums.CopyStatus
   expectedDateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -365,6 +384,7 @@ export type BookLoanCountOrderByAggregateInput = {
   bookCopyId?: Prisma.SortOrder
   dateBorrowed?: Prisma.SortOrder
   dateReturned?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   expectedDateReturned?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -376,6 +396,7 @@ export type BookLoanMaxOrderByAggregateInput = {
   bookCopyId?: Prisma.SortOrder
   dateBorrowed?: Prisma.SortOrder
   dateReturned?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   expectedDateReturned?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -387,6 +408,7 @@ export type BookLoanMinOrderByAggregateInput = {
   bookCopyId?: Prisma.SortOrder
   dateBorrowed?: Prisma.SortOrder
   dateReturned?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   expectedDateReturned?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -500,7 +522,8 @@ export type BookLoanUpdateOneWithoutScoreLogsNestedInput = {
 export type BookLoanCreateWithoutBookCopyInput = {
   id?: string
   dateBorrowed: Date | string
-  dateReturned: Date | string
+  dateReturned?: Date | string | null
+  status: $Enums.CopyStatus
   expectedDateReturned: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -512,7 +535,8 @@ export type BookLoanUncheckedCreateWithoutBookCopyInput = {
   id?: string
   customerId: string
   dateBorrowed: Date | string
-  dateReturned: Date | string
+  dateReturned?: Date | string | null
+  status: $Enums.CopyStatus
   expectedDateReturned: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -553,7 +577,8 @@ export type BookLoanScalarWhereInput = {
   customerId?: Prisma.StringFilter<"BookLoan"> | string
   bookCopyId?: Prisma.StringFilter<"BookLoan"> | string
   dateBorrowed?: Prisma.DateTimeFilter<"BookLoan"> | Date | string
-  dateReturned?: Prisma.DateTimeFilter<"BookLoan"> | Date | string
+  dateReturned?: Prisma.DateTimeNullableFilter<"BookLoan"> | Date | string | null
+  status?: Prisma.EnumCopyStatusFilter<"BookLoan"> | $Enums.CopyStatus
   expectedDateReturned?: Prisma.DateTimeFilter<"BookLoan"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"BookLoan"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"BookLoan"> | Date | string
@@ -562,7 +587,8 @@ export type BookLoanScalarWhereInput = {
 export type BookLoanCreateWithoutCustomerInput = {
   id?: string
   dateBorrowed: Date | string
-  dateReturned: Date | string
+  dateReturned?: Date | string | null
+  status: $Enums.CopyStatus
   expectedDateReturned: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -574,7 +600,8 @@ export type BookLoanUncheckedCreateWithoutCustomerInput = {
   id?: string
   bookCopyId: string
   dateBorrowed: Date | string
-  dateReturned: Date | string
+  dateReturned?: Date | string | null
+  status: $Enums.CopyStatus
   expectedDateReturned: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -610,7 +637,8 @@ export type BookLoanUpdateManyWithWhereWithoutCustomerInput = {
 export type BookLoanCreateWithoutScoreLogsInput = {
   id?: string
   dateBorrowed: Date | string
-  dateReturned: Date | string
+  dateReturned?: Date | string | null
+  status: $Enums.CopyStatus
   expectedDateReturned: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -623,7 +651,8 @@ export type BookLoanUncheckedCreateWithoutScoreLogsInput = {
   customerId: string
   bookCopyId: string
   dateBorrowed: Date | string
-  dateReturned: Date | string
+  dateReturned?: Date | string | null
+  status: $Enums.CopyStatus
   expectedDateReturned: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -648,7 +677,8 @@ export type BookLoanUpdateToOneWithWhereWithoutScoreLogsInput = {
 export type BookLoanUpdateWithoutScoreLogsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dateBorrowed?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dateReturned?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumCopyStatusFieldUpdateOperationsInput | $Enums.CopyStatus
   expectedDateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -661,7 +691,8 @@ export type BookLoanUncheckedUpdateWithoutScoreLogsInput = {
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   bookCopyId?: Prisma.StringFieldUpdateOperationsInput | string
   dateBorrowed?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dateReturned?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumCopyStatusFieldUpdateOperationsInput | $Enums.CopyStatus
   expectedDateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -671,7 +702,8 @@ export type BookLoanCreateManyBookCopyInput = {
   id?: string
   customerId: string
   dateBorrowed: Date | string
-  dateReturned: Date | string
+  dateReturned?: Date | string | null
+  status: $Enums.CopyStatus
   expectedDateReturned: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -680,7 +712,8 @@ export type BookLoanCreateManyBookCopyInput = {
 export type BookLoanUpdateWithoutBookCopyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dateBorrowed?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dateReturned?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumCopyStatusFieldUpdateOperationsInput | $Enums.CopyStatus
   expectedDateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -692,7 +725,8 @@ export type BookLoanUncheckedUpdateWithoutBookCopyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   dateBorrowed?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dateReturned?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumCopyStatusFieldUpdateOperationsInput | $Enums.CopyStatus
   expectedDateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -703,7 +737,8 @@ export type BookLoanUncheckedUpdateManyWithoutBookCopyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   dateBorrowed?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dateReturned?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumCopyStatusFieldUpdateOperationsInput | $Enums.CopyStatus
   expectedDateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -713,7 +748,8 @@ export type BookLoanCreateManyCustomerInput = {
   id?: string
   bookCopyId: string
   dateBorrowed: Date | string
-  dateReturned: Date | string
+  dateReturned?: Date | string | null
+  status: $Enums.CopyStatus
   expectedDateReturned: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -722,7 +758,8 @@ export type BookLoanCreateManyCustomerInput = {
 export type BookLoanUpdateWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dateBorrowed?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dateReturned?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumCopyStatusFieldUpdateOperationsInput | $Enums.CopyStatus
   expectedDateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -734,7 +771,8 @@ export type BookLoanUncheckedUpdateWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bookCopyId?: Prisma.StringFieldUpdateOperationsInput | string
   dateBorrowed?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dateReturned?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumCopyStatusFieldUpdateOperationsInput | $Enums.CopyStatus
   expectedDateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -745,7 +783,8 @@ export type BookLoanUncheckedUpdateManyWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bookCopyId?: Prisma.StringFieldUpdateOperationsInput | string
   dateBorrowed?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dateReturned?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumCopyStatusFieldUpdateOperationsInput | $Enums.CopyStatus
   expectedDateReturned?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -788,6 +827,7 @@ export type BookLoanSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   bookCopyId?: boolean
   dateBorrowed?: boolean
   dateReturned?: boolean
+  status?: boolean
   expectedDateReturned?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -803,6 +843,7 @@ export type BookLoanSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   bookCopyId?: boolean
   dateBorrowed?: boolean
   dateReturned?: boolean
+  status?: boolean
   expectedDateReturned?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -816,6 +857,7 @@ export type BookLoanSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   bookCopyId?: boolean
   dateBorrowed?: boolean
   dateReturned?: boolean
+  status?: boolean
   expectedDateReturned?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -829,12 +871,13 @@ export type BookLoanSelectScalar = {
   bookCopyId?: boolean
   dateBorrowed?: boolean
   dateReturned?: boolean
+  status?: boolean
   expectedDateReturned?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type BookLoanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "customerId" | "bookCopyId" | "dateBorrowed" | "dateReturned" | "expectedDateReturned" | "createdAt" | "updatedAt", ExtArgs["result"]["bookLoan"]>
+export type BookLoanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "customerId" | "bookCopyId" | "dateBorrowed" | "dateReturned" | "status" | "expectedDateReturned" | "createdAt" | "updatedAt", ExtArgs["result"]["bookLoan"]>
 export type BookLoanInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bookCopy?: boolean | Prisma.BookCopyDefaultArgs<ExtArgs>
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
@@ -862,7 +905,8 @@ export type $BookLoanPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     customerId: string
     bookCopyId: string
     dateBorrowed: Date
-    dateReturned: Date
+    dateReturned: Date | null
+    status: $Enums.CopyStatus
     expectedDateReturned: Date
     createdAt: Date
     updatedAt: Date
@@ -1297,6 +1341,7 @@ export interface BookLoanFieldRefs {
   readonly bookCopyId: Prisma.FieldRef<"BookLoan", 'String'>
   readonly dateBorrowed: Prisma.FieldRef<"BookLoan", 'DateTime'>
   readonly dateReturned: Prisma.FieldRef<"BookLoan", 'DateTime'>
+  readonly status: Prisma.FieldRef<"BookLoan", 'CopyStatus'>
   readonly expectedDateReturned: Prisma.FieldRef<"BookLoan", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"BookLoan", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"BookLoan", 'DateTime'>

@@ -129,6 +129,7 @@ export const BookLoanScalarFieldEnum = {
   bookCopyId: 'bookCopyId',
   dateBorrowed: 'dateBorrowed',
   dateReturned: 'dateReturned',
+  status: 'status',
   expectedDateReturned: 'expectedDateReturned',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
