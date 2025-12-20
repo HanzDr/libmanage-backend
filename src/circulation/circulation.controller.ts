@@ -1,4 +1,4 @@
-import { Controller, Post, Patch } from '@nestjs/common';
+import { Controller, Post, Patch, Param, Body } from '@nestjs/common';
 import { CirculationService } from './circulation.service';
 import { BorrowBookDto } from './dto/borrow-book-dto';
 import { ReturnBookDto } from './dto/return-book-dto';
@@ -7,13 +7,19 @@ import { ReturnBookDto } from './dto/return-book-dto';
 export class CirculationController {
   constructor(private circulationService: CirculationService) {}
 
-  @Post('borrow')
-  async borrowBook(borrowBookDto: BorrowBookDto) {
-    return this.circulationService.borrowBook(borrowBookDto);
+  @Post('loans/:bookCopyId/borrow')
+  async borrowBook(
+    @Param(':bookCopyId') bookCopyId: string,
+    @Body() borrowBookDto: BorrowBookDto,
+  ) {
+    return this.circulationService.borrowBook(bookCopyId, borrowBookDto);
   }
 
-  @Patch()
-  async returnBook(returnBookDto: ReturnBookDto) {
-    return this.circulationService.returnBook(returnBookDto);
+  @Patch('loans/:bookCopyId/return')
+  async returnBook(
+    @Param(':bookCopyId') bookCopyId: string,
+    returnBookDto: ReturnBookDto,
+  ) {
+    return this.circulationService.returnBook(bookCopyId, returnBookDto);
   }
 }
