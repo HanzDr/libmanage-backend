@@ -8,7 +8,7 @@ Built using **NestJS**, **Prisma ORM**, and **PostgreSQL**.
 
 ## ⚙️ Setup Instructions
 
-### 1 Prerequisites
+### 1️⃣ Prerequisites
 Make sure you have the following installed:
 
 - **Node.js** (v18 or later)
@@ -18,19 +18,19 @@ Make sure you have the following installed:
 
 ---
 
-### 2️ Clone the Repository
+### 2️⃣ Clone the Repository
 
 git clone https://github.com/your-username/libmanage-backend.git
 cd libmanage-backend
 
 
-### 3 Install Dependencies
+### 3️⃣ Install Dependencies
 npm install
 
-### Add Env Variables
+### 4️⃣ Add Env Variables
 DATABASE_URL="postgresql://USERNAME:PASSWORD@localhost:5432/libmanage?schema=public"
 
-### 4 Prisma Setup
+### 5️⃣ Prisma Setup
 npx prisma generate
 npx prisma migrate dev
 
