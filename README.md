@@ -24,6 +24,8 @@ git clone https://github.com/your-username/libmanage-backend.git
 cd libmanage-backend
 
 npm install
+
+## Env Variables
 DATABASE_URL="postgresql://USERNAME:PASSWORD@localhost:5432/libmanage?schema=public"
 PORT=3000
 
@@ -37,16 +39,38 @@ npm run start:dev
 
 ## 🧠 Approach and Design Explanation
 
-This backend is designed around **domain-driven concepts** rather than directly exposing database tables.
+Core resources such as **Books**, **Book Copies**, **Loans**, and **Customers** are modeled as real-world domain concepts. Each concept has a clear responsibility and lifecycle, making the system easier to understand and extend.
 
-Core resources such as **Books**, **Book Copies**, **Loans**, and **Customers** are modeled as real-world domain concepts.
+### Modular Architecture
 
-**Prisma ORM** is used to provide type-safe database access and transaction management.
+The application is divided into the following main modules:
 
-**Soft deletes** are implemented using `deletedAt` fields to preserve historical data while preventing permanent removal.
+- **Catalog Module**  
+  Responsible for managing book-related information such as titles, genres, language, ISBN, and authors. It handles searching, filtering, pagination, and soft deletion of books.
 
-Borrowing and returning books are handled within a dedicated **Circulation module**, using database transactions to ensure data consistency and integrity.
+- **Inventory Module**  
+  Manages physical book copies, including their availability status (e.g., AVAILABLE, LOANED, DAMAGED). This module tracks multiple copies of the same book and supports soft deletion and status updates.
 
-Customer **reputation scores** are calculated automatically based on return behavior (early, on-time, or late returns), preventing manual manipulation from the client.
+- **Circulation Module**  
+  Handles borrowing and returning of books. It coordinates updates across multiple resources (loans, book copies, and customers) using database transactions to ensure consistency.
 
-The architecture follows **clean RESTful API principles**, keeping business logic inside services and using controllers solely for request routing.
+- **Reputation Module**  
+  Calculates and applies customer reputation score changes automatically based on borrowing behavior. Scores are adjusted when a book is returned early, on time, or late, preventing manual manipulation from the client.
+
+### Data Integrity and Transactions
+
+**Prisma ORM** is used to provide type-safe database access and transaction management. Critical operations such as borrowing and returning books are executed within transactions to guarantee data integrity.
+
+### Soft Deletes
+
+Soft deletes are implemented using `deletedAt` fields. This approach preserves historical data while preventing permanently removed records from appearing in active queries.
+
+### API Design Principles
+
+The system follows **clean RESTful API principles**:
+- URLs identify resources (domain concepts)
+- HTTP methods describe actions
+- Controllers handle routing only
+- Business logic is encapsulated within services
+
+This design ensures the backend is maintainable, scalable, and aligned with real-world library workflows.
