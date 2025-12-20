@@ -8,7 +8,7 @@ Built using **NestJS**, **Prisma ORM**, and **PostgreSQL**.
 
 ## ⚙️ Setup Instructions
 
-### 1️⃣ Prerequisites
+### 1 Prerequisites
 Make sure you have the following installed:
 
 - **Node.js** (v18 or later)
@@ -18,28 +18,27 @@ Make sure you have the following installed:
 
 ---
 
-### 2️⃣ Clone the Repository
+### 2️ Clone the Repository
 
 git clone https://github.com/your-username/libmanage-backend.git
 cd libmanage-backend
 
+
+### 3 Install Dependencies
 npm install
 
-## Env Variables
+### Add Env Variables
 DATABASE_URL="postgresql://USERNAME:PASSWORD@localhost:5432/libmanage?schema=public"
-PORT=3000
 
-## Prisma Setup
+### 4 Prisma Setup
 npx prisma generate
 npx prisma migrate dev
 
-How to run Server: 
+## How to run Server: 
 npm run start:dev
 
 
 ## 🧠 Approach and Design Explanation
-
-Core resources such as **Books**, **Book Copies**, **Loans**, and **Customers** are modeled as real-world domain concepts. Each concept has a clear responsibility and lifecycle, making the system easier to understand and extend.
 
 ### Modular Architecture
 
