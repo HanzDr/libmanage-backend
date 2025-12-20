@@ -1122,7 +1122,7 @@ export const CustomerScalarFieldEnum = {
   firstName: 'firstName',
   lastName: 'lastName',
   age: 'age',
-  booksloanedCount: 'booksloanedCount',
+  booksLoanedCount: 'booksLoanedCount',
   borrowerScore: 'borrowerScore',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',

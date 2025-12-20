@@ -6,19 +6,23 @@ import {
 import { PrismaClient } from 'src/generated/prisma/client';
 import { BorrowBookDto } from './dto/borrow-book-dto';
 import { ReturnBookDto } from './dto/return-book-dto';
+import { ReputationService } from 'src/reputation/reputation.service';
 
 @Injectable()
 export class CirculationService {
-  constructor(private prisma: PrismaClient) {}
+  constructor(
+    private prisma: PrismaClient,
+    private reputationSerivce: ReputationService,
+  ) {}
 
   async borrowBook(bookCopyId: string, borrowBookDto: BorrowBookDto) {
     const { customerId, expectedDateReturned } = borrowBookDto;
 
-    const isAvailable = await this.checkBookCopyAvailability(
+    const isBookCopyAvailable = await this.checkBookCopyAvailability(
       borrowBookDto.bookCopyId,
     );
 
-    if (!isAvailable) {
+    if (!isBookCopyAvailable) {
       throw new ConflictException('Book copy is not available');
     }
 
@@ -32,9 +36,18 @@ export class CirculationService {
           expectedDateReturned: new Date(expectedDateReturned),
         },
       }),
+
       this.prisma.bookCopy.update({
         where: { id: bookCopyId },
         data: { status: 'LOANED' },
+      }),
+      this.prisma.customer.update({
+        where: {
+          id: customerId,
+        },
+        data: {
+          booksLoanedCount: { increment: 1 },
+        },
       }),
     ]);
 
@@ -75,20 +88,32 @@ export class CirculationService {
       }),
     ]);
 
+    if (!returnedLoan.dateReturned) {
+      throw new Error('dateReturned was not set after returning loan');
+    }
+
+    const updatedCustomerReputationScore =
+      await this.reputationSerivce.updateCustomerReputationScore(
+        customerId,
+        returnedLoan.dateReturned,
+        returnedLoan.expectedDateReturned,
+      );
+
     return {
       loan: returnedLoan,
       copy: updatedBookCopy,
+      customer: updatedCustomerReputationScore,
     };
   }
 
-  async checkBookCopyAvailability(bookId: string) {
-    if (!bookId) {
+  async checkBookCopyAvailability(bookCopyId: string) {
+    if (!bookCopyId) {
       throw new BadRequestException('Book ID is required');
     }
 
     const availableCopy = await this.prisma.bookCopy.findFirst({
       where: {
-        bookId,
+        id: bookCopyId,
         status: 'AVAILABLE',
         deletedAt: null,
       },

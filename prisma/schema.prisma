@@ -35,10 +35,11 @@ enum CopyStatus {
 }
 
 model BookCopy {
-  id           String        @id @default(cuid())
-  bookId       String?
-  status       CopyStatus    @default(AVAILABLE)
-  deletedAt    DateTime?
+  id        String     @id @default(cuid())
+  bookId    String?
+  status    CopyStatus @default(AVAILABLE)
+  deletedAt DateTime?
+
   book         Book?         @relation(fields: [bookId], references: [id])
   bookReserves BookReserve[]
   bookLoans    BookLoan[]
@@ -103,7 +104,7 @@ model Customer {
   firstName        String
   lastName         String
   age              String
-  booksloanedCount Int
+  booksLoanedCount Int
   borrowerScore    Int           @default(0)
   createdAt        DateTime      @default(now())
   updatedAt        DateTime      @updatedAt

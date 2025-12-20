@@ -27,12 +27,12 @@ export type AggregateCustomer = {
 }
 
 export type CustomerAvgAggregateOutputType = {
-  booksloanedCount: number | null
+  booksLoanedCount: number | null
   borrowerScore: number | null
 }
 
 export type CustomerSumAggregateOutputType = {
-  booksloanedCount: number | null
+  booksLoanedCount: number | null
   borrowerScore: number | null
 }
 
@@ -41,7 +41,7 @@ export type CustomerMinAggregateOutputType = {
   firstName: string | null
   lastName: string | null
   age: string | null
-  booksloanedCount: number | null
+  booksLoanedCount: number | null
   borrowerScore: number | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -53,7 +53,7 @@ export type CustomerMaxAggregateOutputType = {
   firstName: string | null
   lastName: string | null
   age: string | null
-  booksloanedCount: number | null
+  booksLoanedCount: number | null
   borrowerScore: number | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -65,7 +65,7 @@ export type CustomerCountAggregateOutputType = {
   firstName: number
   lastName: number
   age: number
-  booksloanedCount: number
+  booksLoanedCount: number
   borrowerScore: number
   createdAt: number
   updatedAt: number
@@ -75,12 +75,12 @@ export type CustomerCountAggregateOutputType = {
 
 
 export type CustomerAvgAggregateInputType = {
-  booksloanedCount?: true
+  booksLoanedCount?: true
   borrowerScore?: true
 }
 
 export type CustomerSumAggregateInputType = {
-  booksloanedCount?: true
+  booksLoanedCount?: true
   borrowerScore?: true
 }
 
@@ -89,7 +89,7 @@ export type CustomerMinAggregateInputType = {
   firstName?: true
   lastName?: true
   age?: true
-  booksloanedCount?: true
+  booksLoanedCount?: true
   borrowerScore?: true
   createdAt?: true
   updatedAt?: true
@@ -101,7 +101,7 @@ export type CustomerMaxAggregateInputType = {
   firstName?: true
   lastName?: true
   age?: true
-  booksloanedCount?: true
+  booksLoanedCount?: true
   borrowerScore?: true
   createdAt?: true
   updatedAt?: true
@@ -113,7 +113,7 @@ export type CustomerCountAggregateInputType = {
   firstName?: true
   lastName?: true
   age?: true
-  booksloanedCount?: true
+  booksLoanedCount?: true
   borrowerScore?: true
   createdAt?: true
   updatedAt?: true
@@ -212,7 +212,7 @@ export type CustomerGroupByOutputType = {
   firstName: string
   lastName: string
   age: string
-  booksloanedCount: number
+  booksLoanedCount: number
   borrowerScore: number
   createdAt: Date
   updatedAt: Date
@@ -247,7 +247,7 @@ export type CustomerWhereInput = {
   firstName?: Prisma.StringFilter<"Customer"> | string
   lastName?: Prisma.StringFilter<"Customer"> | string
   age?: Prisma.StringFilter<"Customer"> | string
-  booksloanedCount?: Prisma.IntFilter<"Customer"> | number
+  booksLoanedCount?: Prisma.IntFilter<"Customer"> | number
   borrowerScore?: Prisma.IntFilter<"Customer"> | number
   createdAt?: Prisma.DateTimeFilter<"Customer"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Customer"> | Date | string
@@ -262,7 +262,7 @@ export type CustomerOrderByWithRelationInput = {
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   age?: Prisma.SortOrder
-  booksloanedCount?: Prisma.SortOrder
+  booksLoanedCount?: Prisma.SortOrder
   borrowerScore?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -280,7 +280,7 @@ export type CustomerWhereUniqueInput = Prisma.AtLeast<{
   firstName?: Prisma.StringFilter<"Customer"> | string
   lastName?: Prisma.StringFilter<"Customer"> | string
   age?: Prisma.StringFilter<"Customer"> | string
-  booksloanedCount?: Prisma.IntFilter<"Customer"> | number
+  booksLoanedCount?: Prisma.IntFilter<"Customer"> | number
   borrowerScore?: Prisma.IntFilter<"Customer"> | number
   createdAt?: Prisma.DateTimeFilter<"Customer"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Customer"> | Date | string
@@ -295,7 +295,7 @@ export type CustomerOrderByWithAggregationInput = {
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   age?: Prisma.SortOrder
-  booksloanedCount?: Prisma.SortOrder
+  booksLoanedCount?: Prisma.SortOrder
   borrowerScore?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -315,7 +315,7 @@ export type CustomerScalarWhereWithAggregatesInput = {
   firstName?: Prisma.StringWithAggregatesFilter<"Customer"> | string
   lastName?: Prisma.StringWithAggregatesFilter<"Customer"> | string
   age?: Prisma.StringWithAggregatesFilter<"Customer"> | string
-  booksloanedCount?: Prisma.IntWithAggregatesFilter<"Customer"> | number
+  booksLoanedCount?: Prisma.IntWithAggregatesFilter<"Customer"> | number
   borrowerScore?: Prisma.IntWithAggregatesFilter<"Customer"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Customer"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Customer"> | Date | string
@@ -327,7 +327,7 @@ export type CustomerCreateInput = {
   firstName: string
   lastName: string
   age: string
-  booksloanedCount: number
+  booksLoanedCount: number
   borrowerScore?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -342,7 +342,7 @@ export type CustomerUncheckedCreateInput = {
   firstName: string
   lastName: string
   age: string
-  booksloanedCount: number
+  booksLoanedCount: number
   borrowerScore?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -357,7 +357,7 @@ export type CustomerUpdateInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.StringFieldUpdateOperationsInput | string
-  booksloanedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  booksLoanedCount?: Prisma.IntFieldUpdateOperationsInput | number
   borrowerScore?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -372,7 +372,7 @@ export type CustomerUncheckedUpdateInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.StringFieldUpdateOperationsInput | string
-  booksloanedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  booksLoanedCount?: Prisma.IntFieldUpdateOperationsInput | number
   borrowerScore?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -387,7 +387,7 @@ export type CustomerCreateManyInput = {
   firstName: string
   lastName: string
   age: string
-  booksloanedCount: number
+  booksLoanedCount: number
   borrowerScore?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -399,7 +399,7 @@ export type CustomerUpdateManyMutationInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.StringFieldUpdateOperationsInput | string
-  booksloanedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  booksLoanedCount?: Prisma.IntFieldUpdateOperationsInput | number
   borrowerScore?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -411,7 +411,7 @@ export type CustomerUncheckedUpdateManyInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.StringFieldUpdateOperationsInput | string
-  booksloanedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  booksLoanedCount?: Prisma.IntFieldUpdateOperationsInput | number
   borrowerScore?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -428,7 +428,7 @@ export type CustomerCountOrderByAggregateInput = {
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   age?: Prisma.SortOrder
-  booksloanedCount?: Prisma.SortOrder
+  booksLoanedCount?: Prisma.SortOrder
   borrowerScore?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -436,7 +436,7 @@ export type CustomerCountOrderByAggregateInput = {
 }
 
 export type CustomerAvgOrderByAggregateInput = {
-  booksloanedCount?: Prisma.SortOrder
+  booksLoanedCount?: Prisma.SortOrder
   borrowerScore?: Prisma.SortOrder
 }
 
@@ -445,7 +445,7 @@ export type CustomerMaxOrderByAggregateInput = {
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   age?: Prisma.SortOrder
-  booksloanedCount?: Prisma.SortOrder
+  booksLoanedCount?: Prisma.SortOrder
   borrowerScore?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -457,7 +457,7 @@ export type CustomerMinOrderByAggregateInput = {
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   age?: Prisma.SortOrder
-  booksloanedCount?: Prisma.SortOrder
+  booksLoanedCount?: Prisma.SortOrder
   borrowerScore?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -465,7 +465,7 @@ export type CustomerMinOrderByAggregateInput = {
 }
 
 export type CustomerSumOrderByAggregateInput = {
-  booksloanedCount?: Prisma.SortOrder
+  booksLoanedCount?: Prisma.SortOrder
   borrowerScore?: Prisma.SortOrder
 }
 
@@ -524,7 +524,7 @@ export type CustomerCreateWithoutBookLoanInput = {
   firstName: string
   lastName: string
   age: string
-  booksloanedCount: number
+  booksLoanedCount: number
   borrowerScore?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -538,7 +538,7 @@ export type CustomerUncheckedCreateWithoutBookLoanInput = {
   firstName: string
   lastName: string
   age: string
-  booksloanedCount: number
+  booksLoanedCount: number
   borrowerScore?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -568,7 +568,7 @@ export type CustomerUpdateWithoutBookLoanInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.StringFieldUpdateOperationsInput | string
-  booksloanedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  booksLoanedCount?: Prisma.IntFieldUpdateOperationsInput | number
   borrowerScore?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -582,7 +582,7 @@ export type CustomerUncheckedUpdateWithoutBookLoanInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.StringFieldUpdateOperationsInput | string
-  booksloanedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  booksLoanedCount?: Prisma.IntFieldUpdateOperationsInput | number
   borrowerScore?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -596,7 +596,7 @@ export type CustomerCreateWithoutBookReservesInput = {
   firstName: string
   lastName: string
   age: string
-  booksloanedCount: number
+  booksLoanedCount: number
   borrowerScore?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -610,7 +610,7 @@ export type CustomerUncheckedCreateWithoutBookReservesInput = {
   firstName: string
   lastName: string
   age: string
-  booksloanedCount: number
+  booksLoanedCount: number
   borrowerScore?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -640,7 +640,7 @@ export type CustomerUpdateWithoutBookReservesInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.StringFieldUpdateOperationsInput | string
-  booksloanedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  booksLoanedCount?: Prisma.IntFieldUpdateOperationsInput | number
   borrowerScore?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -654,7 +654,7 @@ export type CustomerUncheckedUpdateWithoutBookReservesInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.StringFieldUpdateOperationsInput | string
-  booksloanedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  booksLoanedCount?: Prisma.IntFieldUpdateOperationsInput | number
   borrowerScore?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -668,7 +668,7 @@ export type CustomerCreateWithoutScoreLogsInput = {
   firstName: string
   lastName: string
   age: string
-  booksloanedCount: number
+  booksLoanedCount: number
   borrowerScore?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -682,7 +682,7 @@ export type CustomerUncheckedCreateWithoutScoreLogsInput = {
   firstName: string
   lastName: string
   age: string
-  booksloanedCount: number
+  booksLoanedCount: number
   borrowerScore?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -712,7 +712,7 @@ export type CustomerUpdateWithoutScoreLogsInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.StringFieldUpdateOperationsInput | string
-  booksloanedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  booksLoanedCount?: Prisma.IntFieldUpdateOperationsInput | number
   borrowerScore?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -726,7 +726,7 @@ export type CustomerUncheckedUpdateWithoutScoreLogsInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.StringFieldUpdateOperationsInput | string
-  booksloanedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  booksLoanedCount?: Prisma.IntFieldUpdateOperationsInput | number
   borrowerScore?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -789,7 +789,7 @@ export type CustomerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   firstName?: boolean
   lastName?: boolean
   age?: boolean
-  booksloanedCount?: boolean
+  booksLoanedCount?: boolean
   borrowerScore?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -805,7 +805,7 @@ export type CustomerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   firstName?: boolean
   lastName?: boolean
   age?: boolean
-  booksloanedCount?: boolean
+  booksLoanedCount?: boolean
   borrowerScore?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -817,7 +817,7 @@ export type CustomerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   firstName?: boolean
   lastName?: boolean
   age?: boolean
-  booksloanedCount?: boolean
+  booksLoanedCount?: boolean
   borrowerScore?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -829,14 +829,14 @@ export type CustomerSelectScalar = {
   firstName?: boolean
   lastName?: boolean
   age?: boolean
-  booksloanedCount?: boolean
+  booksLoanedCount?: boolean
   borrowerScore?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
 }
 
-export type CustomerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "lastName" | "age" | "booksloanedCount" | "borrowerScore" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["customer"]>
+export type CustomerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "lastName" | "age" | "booksLoanedCount" | "borrowerScore" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["customer"]>
 export type CustomerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bookLoan?: boolean | Prisma.Customer$bookLoanArgs<ExtArgs>
   bookReserves?: boolean | Prisma.Customer$bookReservesArgs<ExtArgs>
@@ -858,7 +858,7 @@ export type $CustomerPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     firstName: string
     lastName: string
     age: string
-    booksloanedCount: number
+    booksLoanedCount: number
     borrowerScore: number
     createdAt: Date
     updatedAt: Date
@@ -1293,7 +1293,7 @@ export interface CustomerFieldRefs {
   readonly firstName: Prisma.FieldRef<"Customer", 'String'>
   readonly lastName: Prisma.FieldRef<"Customer", 'String'>
   readonly age: Prisma.FieldRef<"Customer", 'String'>
-  readonly booksloanedCount: Prisma.FieldRef<"Customer", 'Int'>
+  readonly booksLoanedCount: Prisma.FieldRef<"Customer", 'Int'>
   readonly borrowerScore: Prisma.FieldRef<"Customer", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Customer", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Customer", 'DateTime'>
