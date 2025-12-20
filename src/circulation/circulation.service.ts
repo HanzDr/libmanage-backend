@@ -11,8 +11,8 @@ import { ReturnBookDto } from './dto/return-book-dto';
 export class CirculationService {
   constructor(private prisma: PrismaClient) {}
 
-  async borrowBook(borrowBookDto: BorrowBookDto) {
-    const { customerId, bookCopyId, expectedDateReturned } = borrowBookDto;
+  async borrowBook(bookCopyId: string, borrowBookDto: BorrowBookDto) {
+    const { customerId, expectedDateReturned } = borrowBookDto;
 
     const isAvailable = await this.checkBookCopyAvailability(
       borrowBookDto.bookCopyId,
@@ -44,9 +44,10 @@ export class CirculationService {
     };
   }
 
-  async returnBook(returnBookDto: ReturnBookDto) {
-    const { customerId, bookCopyId, dateReturned } = returnBookDto;
+  async returnBook(bookCopyId: string, returnBookDto: ReturnBookDto) {
+    const { customerId } = returnBookDto;
 
+    // Check is the book loaned exists
     const isLoanActive = await this.prisma.bookLoan.findFirst({
       where: {
         customerId,
