@@ -1,27 +1,34 @@
 import { Controller, Patch, Post, Param, Get, Body } from '@nestjs/common';
 import { UpdateBookCopyStatusDto } from './dto/update-book-copy-status-dto';
 import { AddBookCopyDto } from './dto/add-book-copy-dto';
+import { InventoryService } from './inventory.service';
 
 @Controller('inventory')
 export class InventoryController {
+  constructor(private inventoryService: InventoryService) {}
   @Post('books/:bookId/copies')
-  addBookCopy(@Param('bookId') bookId: string, @Body() dto: AddBookCopyDto) {}
+  addBookCopy(
+    @Param('bookId') bookId: string,
+    @Body() addBookCopyDto: AddBookCopyDto,
+  ) {
+    return this.inventoryService.addBookCopy(bookId, addBookCopyDto);
+  }
 
   @Get('books/:bookId/copies')
-  listBookCopies(@Param('bookId') bookId: string) {}
+  getBookCopies(@Param('bookId') bookId: string) {}
 
-  @Get('copies/:copyId')
-  getCopy(@Param('copyId') copyId: string) {}
+  @Get('copies/:bookCopyId')
+  getCopy(@Param('bookCopyId') bookCopyId: string) {}
 
-  @Patch('copies/:copyId/status')
+  @Patch('copies/:bookCopyId/status')
   updateBookCopyStatus(
-    @Param('copyId') copyId: string,
-    @Body() dto: UpdateBookCopyStatusDto,
+    @Param('bookCopyId') bookCopyId: string,
+    @Body() updateBookCopyStatusDto: UpdateBookCopyStatusDto,
   ) {}
 
-  @Patch('copies/:copyId/soft-delete')
-  deleteBookCopy(@Param('copyId') copyId: string) {}
+  @Patch('copies/:bookCopyId/soft-delete')
+  deleteBookCopy(@Param('bookCopyId') bookCopyId: string) {}
 
-  @Patch('copies/:copyId/restore')
-  restoreBookCopy(@Param('copyId') copyId: string) {}
+  @Patch('copies/:bookCopyId/restore')
+  restoreBookCopy(@Param('bookCopyId') bookCopyId: string) {}
 }
