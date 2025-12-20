@@ -45,7 +45,7 @@ export class CirculationService {
   }
 
   async returnBook(bookCopyId: string, returnBookDto: ReturnBookDto) {
-    const { customerId, dateReturned } = returnBookDto;
+    const { customerId } = returnBookDto;
 
     // Check is the book loaned exists
     const isLoanActive = await this.prisma.bookLoan.findFirst({

@@ -9,7 +9,7 @@ export class CirculationController {
 
   @Post('loans/:bookCopyId/borrow')
   async borrowBook(
-    @Param(':bookCopyId') bookCopyId: string,
+    @Param('bookCopyId') bookCopyId: string,
     @Body() borrowBookDto: BorrowBookDto,
   ) {
     return this.circulationService.borrowBook(bookCopyId, borrowBookDto);
@@ -17,8 +17,8 @@ export class CirculationController {
 
   @Patch('loans/:bookCopyId/return')
   async returnBook(
-    @Param(':bookCopyId') bookCopyId: string,
-    returnBookDto: ReturnBookDto,
+    @Param('bookCopyId') bookCopyId: string,
+    @Body() returnBookDto: ReturnBookDto,
   ) {
     return this.circulationService.returnBook(bookCopyId, returnBookDto);
   }
