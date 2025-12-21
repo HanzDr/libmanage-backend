@@ -32,7 +32,18 @@ export class ReservationService {
     return { message: 'Book Reserved Successfully', reservedCopy: reserved };
   }
 
-  async cancelBookCopyReservation(bookCopyId: string) {}
+  async cancelBookCopyReservation(bookReservationId: string) {
+    const cancelledBookReservation = await this.prisma.bookReserve.update({
+      where: {
+        id: bookReservationId,
+      },
+      data: { status: 'CANCELLED' },
+    });
+    return {
+      message: 'Cancelled the reservation successfully',
+      cancelledBookId: cancelledBookReservation.id,
+    };
+  }
 
   async checkBookCopyAvailabilityOnReservedDate(
     bookCopyId: string,
