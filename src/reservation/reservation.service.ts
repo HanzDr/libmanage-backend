@@ -37,8 +37,12 @@ export class ReservationService {
       where: {
         id: bookReservationId,
       },
-      data: {},
+      data: { status: 'CANCELLED' },
     });
+    return {
+      message: 'Cancelled the reservation successfully',
+      cancelledBookId: cancelledBookReservation.id,
+    };
   }
 
   async checkBookCopyAvailabilityOnReservedDate(
